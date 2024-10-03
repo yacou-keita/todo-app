@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+ES+Deco:wght@100..400&display=swap');
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+@layer tailwind-base, reset, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+}
+
+@layer reset {
+    button:focus {
+        box-shadow: none;
+    }
+}
+
+
+body {
+    font-family: "Montserrat", sans-serif;
+    height: 100vh;
+}
+
+
+
+.custom-input {
+    @apply p-3 w-full rounded-sm focus:ring-0 focus:ring-white border border-white focus:border-white text-base outline-none transition-colors duration-200 ease-in-out
+}
+
+.custom-btn {
+    @apply text-white  px-5 rounded  flex justify-center cursor-pointer
+}
+
+.badge {
+    @apply  px-4 rounded-lg
+}
+
+.badge-start {
+    @apply bg-red-200 text-red-600 border border-red-default
+}
+
+.badge-finish {
+    @apply bg-green-200 text-green-600 border border-green-default
+}
+
+.active {
+    @apply bg-blue p-2 text-white font-bold
+}
