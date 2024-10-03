@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+import { TaskHomeComponent } from './modules/task/presentation/pages/task-home/task-home.page';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    ButtonModule,
-    InputTextModule
+    TaskHomeComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

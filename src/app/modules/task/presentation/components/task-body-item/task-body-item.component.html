@@ -1,0 +1,13 @@
+<li class="border-b-2 border-blue px-5  py-5">
+    <div class="flex justify-between">
+        <div>
+            <h2>{{title}}</h2>
+            <span class="badge" [ngClass]="{'badge-finish':isFinish,'badge-start':!isFinish}">{{isFinish ? "terminée" :
+                "incomplète"}}</span>
+        </div>
+        <div class="flex gap-10">
+            <i (click)="handlerDelete()" class="pi pi-trash cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
+            <i (click)="handlerUpdate()" class="pi pi-pencil cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
+        </div>
+    </div>
+</li>

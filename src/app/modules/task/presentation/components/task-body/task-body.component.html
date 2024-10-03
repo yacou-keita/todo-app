@@ -1,0 +1,7 @@
+<ul class="pb-10">
+
+  @for(task of taskList; track task.title){
+    <app-task-body-item [title]="task.title" [isFinish]="task.isFinish" (onDelete)="onDelete($event)" (onUpdate)="onUpdate()"/>
+  }
+  
+</ul>
