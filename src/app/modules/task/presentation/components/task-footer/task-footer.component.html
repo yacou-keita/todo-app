@@ -1,8 +1,5 @@
-<div class="flex justify-between items-center px-5 py-5 bg-blue">
+<div class="flex justify-center items-center px-5 py-5 bg-blue">
   @if(taskListLength$|async){
-  <div>
-    <h2>paginations</h2>
-  </div>
   <h2 class="text-white">Tâches incomplètes: <strong>{{startTaskListLength$|async}}</strong></h2>
   }
 </div>
