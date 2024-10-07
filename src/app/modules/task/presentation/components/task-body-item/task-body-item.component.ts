@@ -34,15 +34,15 @@ export class TaskBodyItemComponent {
   constructor(
     private readonly store: Store<AppState>,
     private readonly confirmationService: ConfirmationService
-  ) { 
-    
+  ) {
+
   }
 
   @Input({ required: true }) task: TaskResponseDTO = {} as TaskResponseDTO
 
   checkboxFrom = new FormControl<boolean>(false, { nonNullable: true })
   filterOption$: Observable<boolean | undefined> = this.store.select(selectfilterOption)
-  isEditModaleVisible: boolean = true
+  isEditModaleVisible: boolean = false
   updateTaskFrom = new FormControl<string>("", { nonNullable: true, validators: [Validators.required] })
 
 
@@ -54,16 +54,17 @@ export class TaskBodyItemComponent {
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: "none",
       rejectIcon: "none",
-      acceptLabel:"Oui",
-      rejectLabel:"Non",
+      acceptLabel: "Oui",
+      rejectLabel: "Non",
       rejectButtonStyleClass: "text-red-default mr-10",
-      acceptButtonStyleClass:"text-green-default",
+      acceptButtonStyleClass: "text-green-default",
       accept: () => this.runDeleteTask()
     });
   }
 
   openModal() {
     this.isEditModaleVisible = true
+    this.updateTaskFrom.patchValue(this.task.title)
   }
 
   closeModal() {
@@ -71,8 +72,9 @@ export class TaskBodyItemComponent {
   }
 
   runUpdateTask() {
-    this.store.dispatch(updateTask({ title: "la tache a été modifier", id: this.task.id }))
+    this.store.dispatch(updateTask({ title: this.updateTaskFrom.value, id: this.task.id }))
     this.handleFilterOption()
+    this.closeModal()
   }
 
   runDeleteTask() {

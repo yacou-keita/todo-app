@@ -29,7 +29,15 @@ body {
 
 
 .custom-input {
-    @apply p-3 w-full rounded-sm focus:ring-0 focus:ring-white border border-white focus:border-white text-base outline-none transition-colors duration-200 ease-in-out
+    @apply p-3 w-full rounded-sm focus:ring-0  text-base outline-none transition-colors duration-200 ease-in-out
+}
+
+.custom-input-blue {
+    @apply  focus:ring-blue border border-blue focus:border-blue 
+}
+
+.custom-input-white {
+    @apply  focus:ring-white border border-white focus:border-white 
 }
 
 .custom-btn {

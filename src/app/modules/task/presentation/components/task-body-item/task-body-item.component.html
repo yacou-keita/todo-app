@@ -14,7 +14,7 @@
 
         </div>
         <div class="flex gap-10">
-            <i (click)="runUpdateTask()" pTooltip="Modifier cette tâche" tooltipPosition="left"
+            <i (click)="openModal()" pTooltip="Modifier cette tâche" tooltipPosition="left"
                 class="pi pi-pencil cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
             <i (click)="openDeletePopUp($event)" pTooltip="Supprimer cette tâche" tooltipPosition="left"
                 class="pi pi-trash cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
@@ -25,15 +25,11 @@
 <p-confirmDialog />
 
 
-<p-dialog header="Modifier cette tâche" [modal]="true" [(visible)]="isEditModaleVisible" [style]="{ width: '40rem' }">
-    <span class="p-text-secondary block mb-5">Update your information.</span>
-  
-    <input [formControl]="updateTaskFrom" class="custom-input" placeholder="Saisissez la tâche" />
-    
-    <div class="flex justify-around">
-        <p-button (onClick)="closeModal()" class="custom-btn bg-red-default py-2 px-4" label="Fermer"
-            icon="pi pi-times" />
-        <p-button (onClick)="runUpdateTask()" class="custom-btn bg-yellow" [disabled]="updateTaskFrom.invalid"
-            label="Modifier" icon="pi pi-pencil" />
-    </div>
+<p-dialog header="Modification de tâche" [modal]="true" [(visible)]="isEditModaleVisible" [style]="{ width: '50rem' }">
+    <span class="text-base">Modifier la tâche</span>
+    <form class="flex flex-row items-center gap-5">
+    <input [formControl]="updateTaskFrom" class="custom-input custom-input-blue my-4" placeholder="Saisissez la tâche" />
+    <p-button (onClick)="runUpdateTask()" class="custom-btn h-12 bg-yellow" [disabled]="updateTaskFrom.invalid"
+    label="Modifier" icon="pi pi-pencil" />
+</form>
 </p-dialog>
