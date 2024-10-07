@@ -1,4 +1,4 @@
-export type DeleteTaskRequestDTO = {
+export type FinishTaskRequestDTO = {
     id: number
     isFinish: boolean
 }

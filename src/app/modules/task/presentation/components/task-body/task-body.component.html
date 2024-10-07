@@ -1,7 +1,10 @@
-<ul class="pb-10">
+<ul class="max-h-80 overflow-scroll overflow-x-hidden overflow-y-auto">
 
-  @for(task of taskList; track task.title){
-    <app-task-body-item [title]="task.title" [isFinish]="task.isFinish" (onDelete)="onDelete($event)" (onUpdate)="onUpdate()"/>
+  @for(task of taskList$ | async; track task.id){
+  <app-task-body-item [task]="task" />
   }
-  
+  @empty {
+  <h2 class="text-center pt-5">Aucune tâche</h2>
+  }
+
 </ul>

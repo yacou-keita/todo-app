@@ -9,11 +9,12 @@ describe("add task feature", () => {
         const taskRequestDTO: TaskRequestDTO = { title: "exercice de math à faire avant demain" }
 
         const taskRepository = new InMemoryTaskRepository()
-        const response = await new AddTask(taskRepository).execute(taskRequestDTO)
+        const taskAdded = await new AddTask(taskRepository).execute(taskRequestDTO)
+        const foundTask = await taskRepository.findById(taskAdded.id)
 
-        expect(response.id).toBeTruthy()
-        expect(response.title).toEqual("exercice de math à faire avant demain")
-        expect(response.isFinish).toBeFalse()
+        expect(foundTask?.id).toBeTruthy()
+        expect(taskAdded.title).toEqual(foundTask?.title ?? "")
+        expect(foundTask?.isFinish).toBeFalse()
     })
 
 })

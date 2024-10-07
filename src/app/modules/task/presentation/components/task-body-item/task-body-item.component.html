@@ -1,13 +1,39 @@
-<li class="border-b-2 border-blue px-5  py-5">
-    <div class="flex justify-between">
-        <div>
-            <h2>{{title}}</h2>
-            <span class="badge" [ngClass]="{'badge-finish':isFinish,'badge-start':!isFinish}">{{isFinish ? "terminée" :
-                "incomplète"}}</span>
+<li class="border-b-2 border-blue px-5  py-2">
+    <div class="flex justify-between items-center">
+        <div class="flex gap-5 items-center">
+
+            @if(!task.isFinish){<input (change)="runFinishTask()" [formControl]="checkboxFrom" type="checkbox"
+                class="checkbox">}
+            <div>
+                <h2 class="mb-2">{{task.title}}</h2>
+                <span class="badge"
+                    [ngClass]="{'badge-finish':task.isFinish,'badge-start':!task.isFinish}">{{task.isFinish
+                    ? "terminée" :
+                    "incomplète"}}</span>
+            </div>
+
         </div>
         <div class="flex gap-10">
-            <i (click)="handlerDelete()" class="pi pi-trash cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
-            <i (click)="handlerUpdate()" class="pi pi-pencil cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
+            <i (click)="runUpdateTask()" pTooltip="Modifier cette tâche" tooltipPosition="left"
+                class="pi pi-pencil cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
+            <i (click)="openDeletePopUp($event)" pTooltip="Supprimer cette tâche" tooltipPosition="left"
+                class="pi pi-trash cursor-pointer hover:text-blue" style="font-size: 1.5rem"></i>
         </div>
     </div>
 </li>
+
+<p-confirmDialog />
+
+
+<p-dialog header="Modifier cette tâche" [modal]="true" [(visible)]="isEditModaleVisible" [style]="{ width: '40rem' }">
+    <span class="p-text-secondary block mb-5">Update your information.</span>
+  
+    <input [formControl]="updateTaskFrom" class="custom-input" placeholder="Saisissez la tâche" />
+    
+    <div class="flex justify-around">
+        <p-button (onClick)="closeModal()" class="custom-btn bg-red-default py-2 px-4" label="Fermer"
+            icon="pi pi-times" />
+        <p-button (onClick)="runUpdateTask()" class="custom-btn bg-yellow" [disabled]="updateTaskFrom.invalid"
+            label="Modifier" icon="pi pi-pencil" />
+    </div>
+</p-dialog>

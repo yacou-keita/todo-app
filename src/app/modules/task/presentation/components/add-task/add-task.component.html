@@ -1,8 +1,10 @@
-<section class="mb-5 relative bottom-32">
-    <div class="flex justify-center">
-      <form class="container max-w-screen-md flex gap-5">
-        <input class="custom-input" placeholder="Saisissez la tâche" />
-        <p-button class="bg-yellow custom-btn" label="Ajouter" icon="pi pi-plus-circle"></p-button>
-      </form>
-    </div>
-  </section>
+<section class="mb-5 relative bottom-44">
+  <div class="flex justify-center">
+    <form class="container max-w-screen-md flex gap-5">
+      <input [formControl]="addTaskFrom" class="custom-input" placeholder="Saisissez la tâche" />
+      <p-button (onClick)="runAddTask()" class="custom-btn" [disabled]="addTaskFrom.invalid"
+        [ngClass]="{'bg-gray': addTaskFrom.invalid, 'bg-yellow':addTaskFrom.valid}" label="Ajouter"
+        icon="pi pi-plus-circle" />
+    </form>
+  </div>
+</section>

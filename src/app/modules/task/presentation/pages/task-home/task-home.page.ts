@@ -3,6 +3,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { AddTaskComponent } from '../../components/add-task/add-task.component';
 import { TaskHeaderComponent } from '../../components/task-header/task-header.component';
 import { TaskBodyComponent } from '../../components/task-body/task-body.component';
+import { TaskFooterComponent } from '../../components/task-footer/task-footer.component';
 
 @Component({
   selector: 'app-task-home',
@@ -11,7 +12,8 @@ import { TaskBodyComponent } from '../../components/task-body/task-body.componen
     HeaderComponent,
     AddTaskComponent,
     TaskHeaderComponent,
-    TaskBodyComponent
+    TaskBodyComponent,
+    TaskFooterComponent
   ],
   templateUrl: './task-home.page.html',
   styleUrl: './task-home.page.css'

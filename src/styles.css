@@ -36,6 +36,10 @@ body {
     @apply text-white  px-5 rounded  flex justify-center cursor-pointer
 }
 
+.checkbox {
+    @apply size-6 rounded-lg border-2 border-blue
+}
+
 .badge {
     @apply  px-4 rounded-lg
 }
