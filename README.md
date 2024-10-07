@@ -1,27 +1,48 @@
-# ToDoApp
+# Application de gestion des tâches
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0.
+Ce projet a été réalisé avec:
 
-## Development server
+- [Angular version 18.0.0](https://angular.dev/).
+- [Tailwind css 3.4.13](https://tailwindcss.com/docs/installation).
+- [PrimeNG 17.18.11](https://primeng.org/installation).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Fonctionnalités principales
+- Créer, modifier et supprimer des tâches
+- Marquer une tâche comme terminée
+- Filtrer les tâches par statut (en cours, terminées)
 
-## Code scaffolding
+## Prérequis
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Assurez-vous d'avoir installé [Node.js](https://nodejs.org/) et [npm](https://www.npmjs.com/) avant de commencer.
 
-## Build
+## Instructions d'installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **Cloner le projet :**
+Utilisez la commande suivante pour cloner le dépôt : `git clone https://github.com/yacou-keita/todo-app.git`
 
-## Running unit tests
+2. **Installer les dépendances :**
+Une fois dans le répertoire du projet, installez toutes les dépendances avec la commande suivante : `npm install`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. **Démarrer l'application :**
+Lancez le projet avec la commande : `npm start` [Ensuite, ouvrez votre navigateur à l'adresse suivante :](http://localhost:4200)
 
-## Running end-to-end tests
+4. **Lancer les tests :**
+Pour exécuter les tests, utilisez la commande suivante : `npm run test`
+ 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Commande angular
 
-## Further help
+**Development  server**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Pour démarrer un serveur de développement, exécutez la commande  `ng serve` Ensuite, rendez-vous sur `http://localhost:4200/`.  L'application sera automatiquement lancée.
+
+**Generer le dossier de production**
+
+Pour créer un build optimisé pour la production, exécutez la commande `ng build` e projet sera compilé dans le dossier  `dist/`.
+
+**Exécution des tests unitaires**
+
+Exécutez `ng test` pour Lancer les tests unitaires via [Karma](https://karma-runner.github.io).
+
+
+
