@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TaskHomeComponent } from './modules/task/presentation/pages/task-home/task-home.page';
+import { TaskHomeComponent } from './modules/task/presentation/pages/task-home-page/task-home.page';
 
 @Component({
   selector: 'app-root',

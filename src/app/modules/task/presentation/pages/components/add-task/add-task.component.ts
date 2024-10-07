@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../states-management/task.selector';
-import { addTask, getTaskList, updateTask } from '../../states-management/task.action';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { AppState } from '../../../states-management/task.selector';
+import { addTask, getTaskList } from '../../../states-management/task.action';
 
 @Component({
   selector: 'app-add-task',

@@ -1,9 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { deleteTask, finishTask, getTaskList, updateTask } from '../../states-management/task.action';
-import { AppState, selectfilterOption } from '../../states-management/task.selector';
 import { Store } from '@ngrx/store';
-import { TaskResponseDTO } from '../../dtos/taskResponse.dto';
 import { TooltipModule } from 'primeng/tooltip';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,6 +9,9 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { AppState, selectfilterOption } from '../../../states-management/task.selector';
+import { TaskResponseDTO } from '../../../dtos/taskResponse.dto';
+import { deleteTask, finishTask, getTaskList, updateTask } from '../../../states-management/task.action';
 
 @Component({
   selector: 'app-task-body-item',

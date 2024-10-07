@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AppState, selectStartTaskListLength, selectTaskListLength } from '../../states-management/task.selector';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { AppState, selectStartTaskListLength, selectTaskListLength } from '../../../states-management/task.selector';
 
 @Component({
   selector: 'app-task-footer',
