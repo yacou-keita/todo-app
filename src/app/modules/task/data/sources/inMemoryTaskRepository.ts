@@ -1,7 +1,13 @@
+import { environment } from "../../../../../environments/environment.development";
+import { StorageService } from "../../../../core/storage/storage.service";
 import { Task } from "../../domain/entities/task";
 import { ITaskRepository } from "../../domain/repositories/task.repository";
+import { TaskResponseDTO } from "../../presentation/dtos/taskResponse.dto";
+import { TaskMapper } from "../mappers/task.mapper";
 
 export class InMemoryTaskRepository implements ITaskRepository {
+
+    storageService = new StorageService()
 
 
     private taskList: Task[] = []
@@ -9,12 +15,15 @@ export class InMemoryTaskRepository implements ITaskRepository {
     add(task: Task): Promise<Task> {
         const taskCreated = task.create({ id: this.taskList.length + 1, title: task.title })
         this.taskList.push(taskCreated)
+        this.formatTaskListToLocalStorage();
         return Promise.resolve(taskCreated)
     }
+
 
     update(params: { id: number; title: string; }): Promise<Task | undefined> {
         const taskFound = this.taskList.find(task => task.id === params.id)
         taskFound?.create({ title: params.title, id: params.id })
+        this.formatTaskListToLocalStorage()
         return Promise.resolve(taskFound)
     }
 
@@ -23,6 +32,7 @@ export class InMemoryTaskRepository implements ITaskRepository {
         if (taskFound) {
             const newTaskList = this.taskList.filter(task => task.id !== id)
             this.taskList = [...newTaskList]
+            this.formatTaskListToLocalStorage()
         }
         return Promise.resolve(taskFound)
     }
@@ -35,11 +45,12 @@ export class InMemoryTaskRepository implements ITaskRepository {
     finish(params: { id: number; isFinish: boolean; }): Promise<Task | undefined> {
         const taskFound = this.taskList.find(task => task.id === params.id)
         if (taskFound) taskFound?.create({ isFinish: params.isFinish, id: params.id, title: taskFound.title })
+        this.formatTaskListToLocalStorage()
         return Promise.resolve(taskFound)
     }
 
     list(isFinish: boolean): Promise<Task[]> {
-
+        this.formatTaskListDTOtoTaskList()
         if (isFinish === true) {
             return Promise.resolve(this.taskList.filter(task => task.isFinish === isFinish))
         }
@@ -53,6 +64,19 @@ export class InMemoryTaskRepository implements ITaskRepository {
     countStarting(): Promise<number> {
         const startingTask = this.taskList.filter(task => task.isFinish === false)
         return Promise.resolve(startingTask.length)
+    }
+
+    private formatTaskListToLocalStorage() {
+        const taskListDTO = this.taskList.map(task => TaskMapper.fromTask(task));
+        this.storageService.save({ key: environment.localStorageKey, data: taskListDTO });
+    }
+
+    private formatTaskListDTOtoTaskList() {
+        const taskListDTO = this.storageService.read<TaskResponseDTO[]>(environment.localStorageKey)
+        if (taskListDTO) {
+            const newTaskList = taskListDTO.map(taskDTO => TaskMapper.fromTaskResponseDTO(taskDTO));
+            this.taskList = newTaskList
+        }
     }
 
 }
