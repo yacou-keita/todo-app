@@ -23,7 +23,8 @@ export class TaskHeaderComponent {
 
   constructor(private readonly store: Store<AppState>) { }
 
-  filterOption = new FormControl<boolean | undefined>(undefined, { nonNullable: true })
+  filterOptionFrom = new FormControl<boolean | undefined>(undefined, { nonNullable: true })
+  searchOptionFrom = new FormControl<string>("", { nonNullable: true })
   filterOptionList = [
     { value: undefined, label: "Toutes les tâches" },
     { value: true, label: "Tâches terminées" },
@@ -33,12 +34,12 @@ export class TaskHeaderComponent {
 
 
   runGetTaskList() {
-    const isFinish = this.filterOption.value
+    const isFinish = this.filterOptionFrom.value
     this.store.dispatch(getTaskList({ isFinish }))
   }
 
   isActiveItem(filterOption?: boolean) {
-    return this.filterOption.value === filterOption
+    return this.filterOptionFrom.value === filterOption
   }
 
 }

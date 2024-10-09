@@ -1,9 +1,13 @@
 <div class="border-b-2 border-blue flex flex-col md:flex-row justify-between items-center px-2 md:px-5 py-5">
-  <h2 [ngClass]="{'text-red-default':isActiveItem(false),'text-green-default':isActiveItem(true)}">Total tâches:
-    <strong>{{taskListLength$| async}}</strong>
-  </h2>
-  <div class="flex gap-5 items-center">
+  <div class="container flex flex-col md:flex-row gap-5 items-center">
+    <input [formControl]="searchOptionFrom" class="custom-input custom-input-blue"
+      placeholder="Rechercher une tâche spécifique" />
     <p-dropdown class="custom-dropdown" (onChange)="runGetTaskList()" [options]="filterOptionList" optionValue="value"
-      [formControl]="filterOption" placeholder="Option de filtre" optionLabel="label" />
+      [formControl]="filterOptionFrom" placeholder="Option de filtre" optionLabel="label" />
+  </div>
+  <div class="w-44 text-center">
+    <h2 [ngClass]="{'text-red-default':isActiveItem(false),'text-green-default':isActiveItem(true)}">Total tâches:
+      <strong>{{taskListLength$| async}}</strong>
+    </h2>
   </div>
 </div>

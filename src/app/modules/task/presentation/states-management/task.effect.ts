@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { TaskService } from "../task.service";
 import { createEffect, Actions, ofType } from "@ngrx/effects";
-import { addTask, deleteTask, finishTask, getcountStartingTask, getTaskList, setcountStartingTask, setTask, setTaskList, updateTask } from "./task.action";
-import { concatMap, exhaustMap } from "rxjs";
+import { addTask, deleteTask, finishTask, getcountStartingTask, getTaskList, searchTaskList, setcountStartingTask, setTask, setTaskList, updateTask } from "./task.action";
+import {  exhaustMap } from "rxjs";
 
 @Injectable()
 export class TaskEffect {
@@ -52,6 +52,14 @@ export class TaskEffect {
             return setTask({ task: taskFinished })
         })
     ))
+
+    // searchTaskList$ = createEffect(() => this.actions$.pipe(
+    //     ofType(searchTaskList),
+    //     exhaustMap(async ({ title }) => {
+    //         const taskList = await this.taskService.searchTaskByTitle(title)
+    //         return setTaskList({taskList:taskList})
+    //     })
+    // ))
 
     countStartingTask$ = createEffect(() => this.actions$.pipe(
         ofType(getcountStartingTask),

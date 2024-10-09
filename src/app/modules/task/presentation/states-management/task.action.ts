@@ -9,6 +9,7 @@ import { TaskResponseDTO } from "../dtos/taskResponse.dto";
 export const addTask = createAction("add task", props<TaskRequestDTO>())
 export const setTask = createAction("set task", props<{ task: TaskResponseDTO }>())
 export const getTaskList = createAction("get task list", props<{ isFinish?: boolean }>())
+export const searchTaskList = createAction("search task list", props<{ title: string }>())
 export const setTaskList = createAction("set task list", props<{ taskList: TaskResponseDTO[], startingTaskLength: number }>())
 export const updateTask = createAction("update task", props<UpdateTaskRequestDTO>())
 export const deleteTask = createAction("delete task", props<{ id: number }>())

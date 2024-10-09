@@ -66,6 +66,11 @@ export class InMemoryTaskRepository implements ITaskRepository {
         return Promise.resolve(startingTask.length)
     }
 
+    searchTaskByTitle(title: string): Promise<Task[]> {
+        const taskList = this.taskList.filter(task => task.title.includes(title))
+        return Promise.resolve(taskList)
+    }
+
     private formatTaskListToLocalStorage() {
         const taskListDTO = this.taskList.map(task => TaskMapper.fromTask(task));
         this.storageService.save({ key: environment.localStorageKey, data: taskListDTO });
