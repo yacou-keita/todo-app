@@ -63,3 +63,7 @@ body {
 .active {
     @apply bg-blue p-2 text-white font-bold
 }
+
+.custom-dropdown {
+    @apply rounded-lg focus:ring-0 focus:ring-blue border border-blue focus:border-blue
+}
