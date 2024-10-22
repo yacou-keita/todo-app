@@ -1,14 +1,14 @@
 import { Feature } from "../../../../../core/feature";
 import { TaskMapper } from "../../../data/mappers/task.mapper";
-import { TaskRequestDTO } from "../../../presentation/dtos/taskRequest.dto";
+import { TaskResponseDTO } from "../../../presentation/dtos/taskResponse.dto";
 import { Task } from "../../entities/task";
 import { ITaskRepository } from "../../repositories/task.repository";
 
-export class SearchTaskByTitle implements Feature<TaskRequestDTO[], string> {
+export class SearchTaskByTitle implements Feature<TaskResponseDTO[], string> {
 
     constructor(private readonly taskRepository: ITaskRepository) { }
 
-    async execute(title: string): Promise<TaskRequestDTO[]> {
+    async execute(title: string): Promise<TaskResponseDTO[]> {
         let taskList: Task[] = []
         if (title) {
             taskList = await this.taskRepository.searchTaskByTitle(title)

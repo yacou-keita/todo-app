@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { TaskService } from "../task.service";
 import { createEffect, Actions, ofType } from "@ngrx/effects";
-import { addTask, deleteTask, finishTask, getcountStartingTask, getTaskList, searchTaskList, setcountStartingTask, setTask, setTaskList, updateTask } from "./task.action";
-import {  exhaustMap } from "rxjs";
+import { addTask, deleteTask, finishTask, getTaskList, searchTaskList, setTask, setTaskList, updateTask } from "./task.action";
+import { debounce, debounceTime, distinctUntilChanged, exhaustMap, switchMap } from "rxjs";
 
 @Injectable()
 export class TaskEffect {
@@ -15,9 +15,11 @@ export class TaskEffect {
     loadTaskList$ = createEffect(() => this.actions$.pipe(
         ofType(getTaskList),
         exhaustMap(async (task) => {
-            const taskList = await this.taskService.taskList(task.isFinish)
-            const countStartingTask = await this.taskService.countStartingTask()
-            return setTaskList({ taskList, startingTaskLength: countStartingTask })
+            const [taskList, countStartingTask] = await Promise.all([
+                this.taskService.taskList(task.isFinish),
+                this.taskService.countStartingTask()
+            ])
+            return setTaskList({ taskList,countStartingTask })
         })
     ))
 
@@ -53,19 +55,14 @@ export class TaskEffect {
         })
     ))
 
-    // searchTaskList$ = createEffect(() => this.actions$.pipe(
-    //     ofType(searchTaskList),
-    //     exhaustMap(async ({ title }) => {
-    //         const taskList = await this.taskService.searchTaskByTitle(title)
-    //         return setTaskList({taskList:taskList})
-    //     })
-    // ))
-
-    countStartingTask$ = createEffect(() => this.actions$.pipe(
-        ofType(getcountStartingTask),
-        exhaustMap(async () => {
-            const countStartingTask = await this.taskService.countStartingTask()
-            return setcountStartingTask({ countStartingTask })
+    searchTaskList$ = createEffect(() => this.actions$.pipe(
+        ofType(searchTaskList),
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap(async ({ title }) => {
+            const taskList = await this.taskService.searchTaskByTitle(title)
+            return setTaskList({ taskList })
         })
     ))
+
 }

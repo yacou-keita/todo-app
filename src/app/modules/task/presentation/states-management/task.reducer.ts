@@ -11,10 +11,10 @@ export const taskReducer = createReducer(
     on(addTask, (task) => task),
     on(getTaskList, (task, { isFinish }) => ({ ...task, filterOption: isFinish })),
     on(searchTaskList, (task) => ({ ...task, taskList: task.list })),
-    on(setTaskList, (task, { taskList, startingTaskLength }) => ({
+    on(setTaskList, (task, { taskList, countStartingTask }) => ({
         ...task,
         list: taskList,
         countTask: taskList.length,
-        countStartingTask: startingTaskLength
+        countStartingTask: countStartingTask ? countStartingTask : task.countStartingTask
     })),
 )

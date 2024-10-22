@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AppState, selectTaskListLength } from '../../../states-management/task.selector';
-import { getTaskList } from '../../../states-management/task.action';
+import { getTaskList, searchTaskList } from '../../../states-management/task.action';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -32,6 +32,9 @@ export class TaskHeaderComponent {
   ]
   taskListLength$: Observable<number> = this.store.select(selectTaskListLength)
 
+  runSearchTask() {
+    this.store.dispatch(searchTaskList({ title: this.searchOptionFrom.value }))
+  }
 
   runGetTaskList() {
     const isFinish = this.filterOptionFrom.value
