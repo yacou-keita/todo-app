@@ -6,9 +6,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { taskReducer } from './modules/task/presentation/states-management/task.reducer';
-import { TaskEffect } from './modules/task/presentation/states-management/task.effect';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { taskReducer } from '../modules/task/presentation/states-management/task.reducer';
+import { TaskEffect } from '../modules/task/presentation/states-management/task.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
